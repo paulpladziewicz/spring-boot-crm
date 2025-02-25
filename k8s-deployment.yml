@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-crm
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: spring-boot-crm
+
+  template:
+    metadata:
+      labels:
+        app: spring-boot-crm
+    spec:
+      containers:
+        - name: crm
+          image: ocir.us-chicago-1.oci.oraclecloud.com/axplsmilyuyy/pladziewicz/crm:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          readinessProbe:
+            httpGet:
+              path: /companies
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /companies
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
