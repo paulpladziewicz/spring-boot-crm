@@ -3,15 +3,20 @@ package com.paulpladziewicz.crm.model;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "COMPANIES", schema = "CRM")
+@Table(name = "COMPANIES")
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COMPANY_ID")
     private Integer id;
+
     private String name;
+
     private String industry;
+
     private String address;
+
+    @Column(length = 1000)
     private String description;
 
     public int getId() {
