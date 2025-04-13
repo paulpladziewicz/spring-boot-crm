@@ -1,0 +1,3 @@
+rootProject.name = 'crm'
+include 'company-service'
+include 'contact-service'

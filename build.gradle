@@ -1,0 +1,31 @@
+plugins {
+    id 'org.springframework.boot' version '3.4.4' apply false
+    id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+allprojects {
+    group = 'com.paulpladziewicz.crm'
+    version = '0.0.1'
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+// You can also add configuration that applies to all subprojects:
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'io.spring.dependency-management'
+
+    // If you want to have a uniform Java version across subprojects:
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    // Common dependencies can go here, but typically you keep them minimal
+    // subprojects can override or add their own versions if needed.
+    dependencies {
+        // A common example:
+    }
+}
